@@ -3,7 +3,7 @@ const db = require('../utils/database')
 const Recipes = require('./recipes.models')
 const Users = require('./users.models')
 
-const UsersRecipes = db.define('users_recipies', {
+const UsersRecipes = db.define('users_recipes', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
@@ -11,6 +11,7 @@ const UsersRecipes = db.define('users_recipies', {
     },
     favorite: {
         type: DataTypes.BOOLEAN,
+        allowNull: false,
         defaultValue: false,
     },
     userId: {

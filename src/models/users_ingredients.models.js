@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 const db = require('../utils/database')
-const Ingredients = require('./ingredients.models')
 const Users = require('./users.models')
+const Ingredients = require('./ingredients.models')
 
 const UsersIngredients = db.define('users_ingredients',{ 
     id: {

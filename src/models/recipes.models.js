@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize')
-const db = require('../config/database')
+const db = require('../utils/database')
 const Users = require('./users.models')
 const Categories = require('./categories.models')
 
