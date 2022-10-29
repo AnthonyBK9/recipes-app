@@ -1,16 +1,18 @@
 //? Dependencies
-const express = require('express');
+const express = require('express')
 //* Routes
-const userRouter = require('./users/users.router');
-const authRouter = require('./auth/auth.router');
+const userRouter = require('./users/users.router')
+const authRouter = require('./auth/auth.router')
+const categoryRouter = require('./categories/categories.router')
+const typeRouter = require('./types/types.router')
 //? Files
-const { port } = require('./config');
+const { port } = require('./config')
 const initModels = require('./models/initModels')
-const db = require('./utils/database');
+const db = require('./utils/database')
 
 //? Initial Configs
-const app = express();
-app.use(express.json());
+const app = express()
+app.use(express.json())
 
 db.authenticate() // ? Authenticate database credentials
     .then(() => console.log('Database authenticated'))
@@ -24,11 +26,13 @@ initModels()
 
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/categorries', categoryRouter)
+app.use('/api/v1/types', typeRouter)
 
 app.get('/', (req, res) => {
     res.status(200).json({msg: 'OK'})
 });
 
 app.listen(port, () => {
-    console.log(`Server started at port: ${port}`);
+    console.log(`Server started at port: ${port}`)
 });

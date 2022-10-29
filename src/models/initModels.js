@@ -24,7 +24,7 @@ const initModels = () => {
     Users.hasMany(UsersIngredients)
     UsersIngredients.belongsTo(Users)
 
-    //* UsersIngredients 1:M Ingredients
+    //* Ingredients 1:M UsersIngredients
     Ingredients.hasMany(UsersIngredients)
     UsersIngredients.belongsTo(Ingredients)
 
@@ -40,7 +40,7 @@ const initModels = () => {
     Categories.hasMany(Recipes)
     Recipes.belongsTo(Categories)
 
-    //* Instructinos 1:M Recipes
+    //* Recipes 1:M Instructinos
     Recipes.hasMany(Instructions)
     Instructions.belongsTo(Recipes)
 
@@ -48,7 +48,7 @@ const initModels = () => {
     Types.hasMany(Ingredients)
     Ingredients.belongsTo(Types)
 
-    //* Instructinos 1:M RecipesIngredients
+    //* Ingredients 1:M RecipesIngredients
     Ingredients.hasMany(RecipesIngredients)
     RecipesIngredients.belongsTo(Ingredients)
 
