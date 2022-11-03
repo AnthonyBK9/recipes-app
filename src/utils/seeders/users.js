@@ -1,5 +1,6 @@
 const uuid = require('uuid')
 const {faker} = require('@faker-js/faker')
+const generateToken  = require('../generateToken');
 
 const Users = require('../../models/users.models')
 
@@ -12,7 +13,8 @@ for(let i = 0; i < 10; i++){
             email: faker.internet.email(),
             password: 'root',
             phone: faker.phone.number(),
-            birthday: faker.date.birthdate()
+            birthday: faker.date.birthdate(),
+            token: generateToken()
         }
     )
 }
@@ -22,6 +24,8 @@ Users.create({
     lastName: 'Root',
     email: 'admin@admin.com',
     password: 'root',
+    role: 'admin',
     phone: faker.phone.number(),
-    birthday: faker.date.birthdate()
+    birthday: faker.date.birthdate(),
+    token: generateToken()
 })

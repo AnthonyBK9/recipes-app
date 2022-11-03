@@ -7,7 +7,7 @@ router.route('/')
     .get(recipesServices.getAllRecipes)
     .post( passport.authenticate('jwt', { session: false }), recipesServices.postRecipe)
 
-router.route('/:recipes_id')
+router.route('/:recipe_id')
     .get(recipesServices.getRecipeById)
     .patch(passport.authenticate('jwt', { session: false }), recipesServices.patchRecipe)
     .delete(passport.authenticate('jwt', { session: false }), recipesServices.deleteRecipe)
