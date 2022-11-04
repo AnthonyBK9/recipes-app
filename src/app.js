@@ -7,6 +7,8 @@ const authRouter = require('./auth/auth.router')
 const categoryRouter = require('./categories/categories.router')
 const typeRouter = require('./types/types.router')
 const recipesRouter = require('./recipes/recipes.router')
+const ingredientRouter = require('./ingredients/ingredients.router')
+
 //? Files
 const { port } = require('./config')
 const initModels = require('./models/initModels')
@@ -32,6 +34,7 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/categorries', categoryRouter)
 app.use('/api/v1/types', typeRouter)
 app.use('/api/v1/recipes', recipesRouter)
+app.use('/api/v1/ingredients', ingredientRouter)
 
 app.get('/', (req, res) => {
     res.status(200).json({msg: 'OK'})

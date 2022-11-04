@@ -6,6 +6,8 @@ const Instructions = require('../models/instructions.models')
 const RecipesIngredients = require('../models/recipes_ingredients.models')
 const Ingredients = require('../models/ingredients.models')
 const Types = require('../models/types.models')
+const UsersIngredients = require('../models/recipes_ingredients.models')
+const { Op } = require("sequelize");
 
 const getAllRecipes = async () => {
     const data = await Recipes.findAll({
@@ -112,10 +114,40 @@ const deleteRecipe = async (id) => {
     return data
 }
 
+const getMyRecipe = async (userId) => {
+    const usersIngredients = await UsersIngredients.findAll({
+        attributes: ['ingredientId'],
+        where: {
+            userId
+        }
+    })
+
+    const filteredIngredients = usersIngredients.map(obj => obj.ingredientId)
+    const recipeIngredients = await RecipesIngredients.findAll({
+        where: {
+            ingredientId: {
+                [Op.in]: filteredIngredients
+            }
+        }
+    })
+
+    const filteredRecipes = recipeIngredients.map(obj => obj.recipeId)
+    const data = await Recipes.findAll({
+        where: {
+            id: {
+                [Op.in]: filteredRecipes
+            }
+        }
+    })
+    
+    return data
+}
+
 module.exports = {
-    getAllRecipes,
+    getAllRecipes,    
     getRecipeById,
     createRecipe,
     updateRecipe,
-    deleteRecipe
+    deleteRecipe,
+    getMyRecipe
 }
